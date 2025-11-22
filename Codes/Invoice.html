@@ -1,0 +1,93 @@
+<!-- Dhi-Andra Neath 2307187 IA# 2 Eccomerce Website 21/11/2025 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="../Assets/buisnesslogo.jpg">
+    <title>Montego Beauty</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Italiana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="main-header bounce-in">
+        <img src="../Assets/logo.png" alt="My Image" style="width:200px; height:200px;">
+        <h1>Montego Beauty</h1>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="Home.html" class="active">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Cart.html">Cart</a></li>
+                <li><a href="Invoice.html">Invoice</a></li>
+                <li><a href="Checkout.html">Checkout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="invoice-container pop-up">
+        <div class="invoice-header">
+            <h1>Invoice</h1>
+            <p>Date: 21-Nov-2025</p>
+            <p>Invoice #: 000123</p>
+        </div>
+
+        <div class="invoice-details">
+            <p><strong>Customer Name:</strong> Jane Doe</p>
+            <p><strong>Email:</strong> jane@example.com</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Eyeliner</td>
+                    <td>$1,500.00</td>
+                    <td>1</td>
+                    <td>$1,500.00</td>
+                </tr>
+                <tr>
+                    <td>EyeShadow</td>
+                    <td>$5,000.00</td>
+                    <td>2</td>
+                    <td>$10,000.00</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Subtotal</td>
+                    <td>$11,500.00</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Tax (5%)</td>
+                    <td>$575.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3">Total</td>
+                    <td>$12,575.00</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <a href="../Codes/Checkout.html">
+            <button class="cart-checkout-button">Proceed To CheckOut</button>
+        </a>
+    </main>
+    <footer class="footer">
+         &copy; 2025 Montego Beauty | All Rights Reserved | 
+        </footer>
+</body>
+</html>
