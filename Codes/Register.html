@@ -1,0 +1,162 @@
+<!-- Dhi-Andra Neath 2307187 IA# 2 Ecommerce Website 21/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Assets/logo.png">
+    
+    <title>Montego Beauty</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Inline CSS for background -->
+    <style>
+        body {
+            background-image: url(../Assets/backgroundlogin.jpeg);
+            font-family: 'Didot';
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Registration Container -->
+    <div class="login-container bounce-in">
+        <div class="login-form">
+
+            <!-- Logo -->
+            <img src="../Assets/logo.png" class="login-logo">
+
+            <!-- Headings -->
+            <h1>Welcome to Montego Beauty</h1>
+            <br>
+            <h2>Register Here!</h2>
+            <br>
+
+            <!-- Registration Form -->
+            <form>
+                <!-- Name -->
+                <label>Name:</label>
+                <input type="text" placeholder="Jane Doe" required>
+                <br>
+
+                <!-- Date of Birth -->
+                <label>Date of birth:</label>
+                <input type="date" required>
+                <br>
+
+                <!-- Email -->
+                <label>Email:</label>
+                <input type="text" placeholder="janedoe@gmail.com" required>
+                <br>
+
+                <!-- Username -->
+                <label>Username:</label>
+                <input type="text" placeholder="Please Enter Username" required>
+                <br>
+
+                <!-- Password -->
+                <label>Password:</label>
+                <input type="password" placeholder="Please enter Strong Password" required>
+                <br>
+
+                <!-- Register Button -->
+                <a href="../Codes/Registered.html">
+                    <button type="button">Register</button>
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 Montego Beauty | All Rights Reserved
+    </footer>
+
+</body>
+</html>
+
+
+        <script>
+    // IA#2: DOM Manipulation
+    const form = document.querySelector('form');
+    const inputs = form.querySelectorAll('input');
+    
+    // Assign each input to a variable for clarity
+    const nameInput = inputs[0];
+    const dobInput = inputs[1];
+    const emailInput = inputs[2];
+    const usernameInput = inputs[3];
+    const passwordInput = inputs[4];
+
+    // Create a message div for feedback
+    const messageDiv = document.createElement('div');
+    messageDiv.style.marginTop = "10px";
+    messageDiv.style.fontWeight = "bold";
+    form.appendChild(messageDiv);
+
+    // IA#2: Event Handling for Register button
+    const registerBtn = form.querySelector('button[type="button"]');
+    registerBtn.addEventListener('click', function(e) {
+        e.preventDefault(); // prevent default navigation
+        messageDiv.textContent = ""; // reset previous messages
+        messageDiv.style.color = "red";
+
+        const name = nameInput.value.trim();
+        const dob = dobInput.value.trim();
+        const email = emailInput.value.trim();
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // IA#2: Form Validation / Input Handling
+        if(name === "" || dob === "" || email === "" || username === "" || password === "") {
+            messageDiv.textContent = "Error: Please fill in all fields.";
+            return;
+        }
+
+        // Simple email validation
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if(!email.match(emailPattern)) {
+            messageDiv.textContent = "Error: Please enter a valid email address.";
+            return;
+        }
+
+        // Password length check
+        if(password.length < 6) {
+            messageDiv.textContent = "Error: Password must be at least 6 characters long.";
+            return;
+        }
+
+        // IA#2: Basic Interactivity / Logic
+        messageDiv.style.color = "green";
+        messageDiv.textContent = `Registration successful! Welcome, ${name}.`;
+
+        // Optional: Redirect to Registered.html after 1 second
+        setTimeout(() => {
+            window.location.href = "../Codes/Registered.html";
+        }, 1000);
+    });
+
+    // IA#2: Extra Event Handling – highlight inputs on focus
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.style.backgroundColor = "#ffffcc"; // light yellow
+        });
+        input.addEventListener('blur', () => {
+            input.style.backgroundColor = "";
+        });
+    });
+</script>
+
+
+        
+</body>
+</html>

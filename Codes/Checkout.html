@@ -1,0 +1,184 @@
+<!-- Dhi-Andra Neath 2307187 IA# 2 Ecommerce Website 21/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="../Assets/buisnesslogo.jpg">
+    
+    <title>Montego Beauty - Checkout</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Italiana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header bounce-in">
+        <img src="../Assets/logo.png" alt="Logo" style="width:200px; height:200px;">
+        <h1>Welcome to Montego Beauty!</h1>
+        
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="Home.html" class="active">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Cart.html">Cart</a></li>
+                <li><a href="Invoice.html">Invoice</a></li>
+                <li><a href="Checkout.html">Checkout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Order Summary -->
+        <div class="invoice-container">
+            <h1>Order Summary</h1>
+        </div>
+
+        <!-- Invoice Table -->
+        <table id="invoiceTable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Sub-Total</th>
+                    <th>Tax</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items will be inserted dynamically here -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">Subtotal</th>
+                    <th id="subtotalCell">$0.00</th>
+                </tr>
+                <tr>
+                    <th colspan="4">Tax (5%)</th>
+                    <th id="taxCell">$0.00</th>
+                </tr>
+                <tr>
+                    <th colspan="4">Total</th>
+                    <th id="totalCell">$0.00</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Shipping Details -->
+        <h1>Shipping Details</h1>
+        <div class="invoice-container">
+            <form id="checkoutForm">
+                
+                <!-- Name and Address -->
+                <label>Full Name:</label>
+                <input type="text" placeholder="Jane Doe" required>
+
+                <label>Address:</label>
+                <input type="text" placeholder="734 Example Road, Jamaica" required>
+
+                <!-- Amount Owed Display -->
+                <h3 id="amountOwed">Amount Owed: $0.00</h3>
+                <br>
+
+                <!-- Payment Input -->
+                <label>Amount being Paid:</label>
+                <input type="text" placeholder="$0.00" required>
+                <br><br>
+
+                <!-- Form Buttons -->
+                <button type="button" id="confirmBtn" class="cart-checkout-button">Confirm Order</button>
+                <button type="button" id="cancelBtn" class="cart-checkout-button">Cancel</button>
+                <button type="reset" class="cart-checkout-button">Clear All</button>
+                <button type="button" id="closeBtn" class="cart-checkout-button">Close</button>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 Montego Beauty | All Rights Reserved
+    </footer>
+
+<script>
+    // IA#2: DOM Manipulation & Dynamic Table
+
+    const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+    const tableBody = document.querySelector('#invoiceTable tbody');
+    const subtotalCell = document.getElementById('subtotalCell');
+    const taxCell = document.getElementById('taxCell');
+    const totalCell = document.getElementById('totalCell');
+    const amountOwedH3 = document.getElementById('amountOwed');
+
+    let subtotal = 0;
+
+    cart.forEach(item => {
+        const quantity = item.quantity || 1;
+        const price = item.price || 0;
+        const subTotal = quantity * price;
+        const tax = subTotal * 0.05;
+
+        subtotal += subTotal;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.product}</td>
+            <td>${quantity}</td>
+            <td>$${price.toFixed(2)}</td>
+            <td>$${subTotal.toFixed(2)}</td>
+            <td>$${tax.toFixed(2)}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    const tax = subtotal * 0.05;
+    const total = subtotal + tax;
+
+    subtotalCell.textContent = `$${subtotal.toFixed(2)}`;
+    taxCell.textContent = `$${tax.toFixed(2)}`;
+    totalCell.textContent = `$${total.toFixed(2)}`;
+    amountOwedH3.textContent = `Amount Owed: $${total.toFixed(2)}`;
+
+    // IA#2: Event Handling & Validation
+    const form = document.getElementById('checkoutForm');
+    const amountInput = form.querySelector('input[placeholder^="$0"]');
+
+    document.getElementById('confirmBtn').addEventListener('click', function() {
+        const amountPaid = parseFloat(amountInput.value.replace(/[^0-9.]/g,'')) || 0;
+
+        if(amountPaid === 0){
+            alert('Please enter an amount to pay!');
+        } else if(amountPaid < total){
+            alert('Insufficient payment. Please enter the full amount.');
+        } else {
+            alert('Payment accepted. Thank you for your order!');
+            sessionStorage.removeItem('cart'); // clear cart
+            window.location.href = "../Codes/Confirmed.html";
+        }
+    });
+
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+        alert('Order cancelled.');
+        sessionStorage.removeItem('cart');
+    });
+
+    document.getElementById('closeBtn').addEventListener('click', function() {
+        alert('Returning to Home page...');
+        window.location.href = "../Codes/Home.html";
+    });
+</script>
+
+</body>
+</html>

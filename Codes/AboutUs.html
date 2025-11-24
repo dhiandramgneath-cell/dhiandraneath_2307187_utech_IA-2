@@ -1,0 +1,126 @@
+<!-- Dhi-Andra Neath 2307187 IA# 2 Eccomerce Website 21/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="../Assets/buisnesslogo.jpg">
+
+    <title>Montego Beauty</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Italiana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header bounce-in">
+        <img src="../Assets/logo.png" alt="Logo" style="width: 200px; height: 200px">
+        <h1>Montego Beauty</h1>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="Home.html" class="active">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Cart.html">Cart</a></li>
+                <li><a href="Invoice.html">Invoice</a></li>
+                <li><a href="Checkout.html">Checkout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Titles -->
+        <h1 id="mainTitle">About Montego Beauty</h1>
+        <br>
+        <h2>"Island Beauty, Timeless Glow"</h2>
+        <br><br><br><br><br><br>
+
+        <!-- Full width image -->
+        <img src="../Assets/makeup.jpeg" class="image-across-page">
+        <br><br>
+
+        <!-- Info Cards Section -->
+        <div class="cards">
+            <!-- Personal Info Card -->
+            <div class="card pop-up">
+                <h3>Name:</h3>
+                <p>Dhi-Andra Neath</p>
+                <br>
+
+                <h3>ID Number:</h3>
+                <p>2307187</p>
+                <br>
+
+                <h3>Email:</h3>
+                <p>dhiandraneath@gmail.com</p>
+            </div>
+
+            <!-- Assignment Info Card -->
+            <div class="card pop-up">
+                <h3>Module Code:</h3>
+                <p>CIT2011</p>
+                <br>
+
+                <h3>Assignment Name:</h3>
+                <p>Individual Assessment #2</p>
+                <br>
+
+                <h3>Day/Time of Class:</h3>
+                <p>Monday, 6pm-8pm</p>
+            </div>
+
+            <!-- Contact Card -->
+            <div class="card pop-up">
+                <br><br>
+                <h3>Do you have any comments or queries?</h3>
+                <a href="mailto:2307187@utech.edu.jm">
+                    <button id="emailBtn">Email Us</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Another full width image -->
+        <img src="../Assets/makeup.jpeg" class="image-across-page">
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+         &copy; 2025 Montego Beauty | All Rights Reserved |
+    </footer>
+
+    <!-- IA#2 JavaScript Section -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Change the main title color when page loads
+            document.getElementById("mainTitle").style.color = "#d62b70";
+        });
+
+        // Email button hover animation
+        const emailBtn = document.getElementById("emailBtn");
+        emailBtn.addEventListener("mouseover", function() {
+            emailBtn.style.transform = "scale(1.1)";
+        });
+        emailBtn.addEventListener("mouseout", function() {
+            emailBtn.style.transform = "scale(1)";
+        });
+
+        // IA#2 - DOM Manipulation + Logic Example
+        // Automatically show a message after 5 seconds
+        setTimeout(function() {
+            alert("Thank you for visiting the About Us page!");
+        }, 5000);
+    </script>
+
+</body>
+</html>

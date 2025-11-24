@@ -1,0 +1,270 @@
+<!-- Dhi-Andra Neath 2307187 IA# 2 Ecommerce Website 21/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Assets/logo.png">
+    
+    <title>Montego Beauty</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Inline CSS for body background -->
+    <style>
+        body {
+            /* Background image for login page */
+            background-image: url(../Assets/backgroundlogin.jpeg);
+            background-size: cover;          /* Cover entire screen */
+            background-position: center;     /* Center the image */
+            background-repeat: no-repeat;    /* Prevent repetition */
+            font-family: 'GFS Didot', serif; /* Correct Google Font */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Login Container -->
+    <div class="login-container bounce-in">
+        <div class="login-form">
+            
+            <!-- Logo -->
+            <img src="../Assets/logo.png" class="login-logo" alt="Montego Beauty Logo">
+            
+            <!-- Main Title -->
+            <h1>Montego Beauty</h1>
+            <br>
+            
+            <!-- Subtitle -->
+            <h2>Login:</h2>
+            <br>
+            
+            <!-- Login Form -->
+            <form>
+                
+                <!-- Username Field -->
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Please Enter your username">
+                <br>
+                
+                <!-- Password Field -->
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Please enter your password">
+                <br>
+                
+                <!-- Login Button -->
+                <a href="../Codes/Home.html">
+                    <button type="button">Login</button>
+                </a>
+                <br><br>
+                
+                <!-- Registration Link -->
+                <label>Don't have an account?</label>
+                <a href="../Codes/Register.html">
+                    <button type="button">Register here</button>
+                </a>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 Montego Beauty | All Rights Reserved
+    </footer>
+
+</body>
+</html>
+
+        <script>
+    // IA#2: DOM Manipulation
+    const form = document.querySelector('form');
+    const usernameInput = form.querySelector('input[type="text"]');
+    const passwordInput = form.querySelector('input[type="password"]');
+
+    // Create an output div for messages
+    const messageDiv = document.createElement('div');
+    messageDiv.style.marginTop = "10px";
+    messageDiv.style.fontWeight = "bold";
+    form.appendChild(messageDiv);
+
+    // IA#2: Event Handling for Login button
+    const loginBtn = form.querySelector('button[type="button"]');
+    loginBtn.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        messageDiv.textContent = "";
+        messageDiv.style.color = "red";
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // IA#2: Form Validation / Input Handling
+        if(username === "" && password === "") {
+            messageDiv.textContent = "Error: Please enter your username and password.";
+            usernameInput.style.border = "2px solid red";
+            passwordInput.style.border = "2px solid red";
+        } else if(username === "") {
+            messageDiv.textContent = "Error: Please enter your username.";
+            usernameInput.style.border = "2px solid red";
+            passwordInput.style.border = "";
+        } else if(password === "") {
+            messageDiv.textContent = "Error: Please enter your password.";
+            passwordInput.style.border = "2px solid red";
+            usernameInput.style.border = "";
+        } else {
+            // IA#2: Basic Interactivity / Logic
+            messageDiv.style.color = "green";
+            messageDiv.textContent = `Welcome, ${username}! Logging you in...`;
+
+            // Optional: Redirect after 1 second delay
+            setTimeout(() => {
+                window.location.href = "../Codes/Home.html";
+            }, 1000);
+        }
+    });
+
+    // IA#2: Extra Event Handling – highlight inputs on focus
+    usernameInput.addEventListener('focus', () => {
+        usernameInput.style.backgroundColor = "#ffffcc"; 
+    });
+    usernameInput.addEventListener('blur', () => {
+        usernameInput.style.backgroundColor = "";
+    });
+
+    passwordInput.addEventListener('focus', () => {
+        passwordInput.style.backgroundColor = "#ffffcc";
+    });
+    passwordInput.addEventListener('blur', () => {
+        passwordInput.style.backgroundColor = "";
+    });
+</script>
+
+    
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

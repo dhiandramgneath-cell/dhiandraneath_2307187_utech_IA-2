@@ -1,0 +1,176 @@
+<!-- Dhi-Andra Neath 2307187 IA# 2 Eccomerce Website 21/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="../Assets/buisnesslogo.jpg">
+
+    <title>Montego Beauty</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Italiana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header bounce-in">
+        <img src="../Assets/logo.png" alt="Logo" style="width:200px; height:200px;">
+        <h1>Montego Beauty</h1>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="Home.html" class="active">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Cart.html">Cart</a></li>
+                <li><a href="Invoice.html">Invoice</a></li>
+                <li><a href="Checkout.html">Checkout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cart-container pop-up">
+
+        <!-- Page Title -->
+        <h1>Your cart</h1>
+
+        <!-- Cart Subtotal Section -->
+        <div class="cart-subtotal pop-up">
+            Sub-Total: $0.00
+            <br>
+            Tax (5%): $0.00
+            <br>
+        </div>
+
+        <!-- Cart Total Section -->
+        <div class="cart-total pop-up">
+            Total: $0.00
+            <br>
+            <br>
+            <br>
+        </div>
+
+        <!-- Get Invoice Button -->
+        <a href="../Codes/Invoice.html">
+            <button class="cart-checkout-button">Get Invoice</button>
+        </a>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+         &copy; 2025 Montego Beauty | All Rights Reserved |
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+        // IA#2: DOM Manipulation
+        const cartContainer = document.querySelector('.cart-container');
+
+        // Create message div for alerts
+        const messageDiv = document.createElement('div');
+        messageDiv.style.fontWeight = 'bold';
+        messageDiv.style.marginBottom = '10px';
+        cartContainer.prepend(messageDiv);
+
+        // Retrieve cart from sessionStorage
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+        // Function to display cart items dynamically
+        function displayCart() {
+            // Remove previous dynamically added items
+            const existingItems = cartContainer.querySelectorAll('.cart-item-dynamic');
+            existingItems.forEach(item => item.remove());
+
+            let subtotal = 0;
+
+            // Loop through cart items
+            cart.forEach((item) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item', 'cart-item-dynamic');
+
+                // Product image
+                const img = document.createElement('img');
+                const productName = item.product.toLowerCase().replace(/\s/g, '');
+                img.src = `../Assets/${productName}.jpeg`;
+                img.alt = item.product;
+
+                // Product details
+                const detailsDiv = document.createElement('div');
+                detailsDiv.classList.add('cart-item-details');
+
+                const nameH3 = document.createElement('h3');
+                nameH3.textContent = item.product;
+
+                const priceP = document.createElement('p');
+                priceP.textContent = `Price: $${item.price.toFixed(2)}`;
+
+                // Quantity input
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.min = 1;
+                quantityInput.value = item.quantity || 1;
+
+                // Update quantity in sessionStorage on change
+                quantityInput.addEventListener('change', () => {
+                    item.quantity = parseInt(quantityInput.value);
+                    sessionStorage.setItem('cart', JSON.stringify(cart));
+                    displayCart();
+                });
+
+                detailsDiv.append(nameH3, priceP, document.createTextNode('Quantity: '), quantityInput);
+
+                // Total price for this item
+                const totalP = document.createElement('p');
+                totalP.textContent = `$${(item.price * (item.quantity || 1)).toFixed(2)}`;
+
+                itemDiv.append(img, detailsDiv, totalP);
+
+                // Insert before subtotal section
+                cartContainer.insertBefore(itemDiv, cartContainer.querySelector('.cart-subtotal'));
+
+                // Update subtotal
+                subtotal += item.price * (item.quantity || 1);
+            });
+
+            // Update subtotal, tax, and total dynamically
+            const tax = subtotal * 0.05;
+            const total = subtotal + tax;
+
+            cartContainer.querySelector('.cart-subtotal').textContent = 
+                `Sub-Total: $${subtotal.toFixed(2)}\nTax (5%): $${tax.toFixed(2)}`;
+
+            cartContainer.querySelector('.cart-total').textContent = 
+                `Total: $${total.toFixed(2)}`;
+        }
+
+        // IA#2: Event Handling – Checkout button
+        const checkoutBtn = document.querySelector('.cart-checkout-button');
+        checkoutBtn.addEventListener('click', () => {
+            if(cart.length === 0) {
+                messageDiv.style.color = 'red';
+                messageDiv.textContent = 'Your cart is empty!';
+            } else {
+                messageDiv.style.color = 'green';
+                messageDiv.textContent = 'Proceeding to Invoice...';
+                setTimeout(() => {
+                    window.location.href = "../Codes/Invoice.html";
+                }, 1000);
+            }
+        });
+
+        // Initial display of cart items
+        displayCart();
+    </script>
+
+</body>
+</html>
